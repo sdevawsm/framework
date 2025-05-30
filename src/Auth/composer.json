@@ -1,13 +1,13 @@
 {
-    "name": "lady-php/auth",
-    "description": "Módulo de autenticação do LadyPHP Framework",
+    "name": "lady/auth",
+    "description": "Módulo de autenticação do Lady Framework",
     "type": "library",
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "lady-php/support": "^1.0",
+        "lady/support": "^1.0",
         "firebase/php-jwt": "^6.0",
-        "lady-php/database": "^1.0"
+        "lady/database": "^1.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.0",
@@ -15,12 +15,12 @@
     },
     "autoload": {
         "psr-4": {
-            "LadyPHP\\Auth\\": "src/"
+            "Lady\\Auth\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "LadyPHP\\Auth\\Tests\\": "tests/"
+            "Lady\\Auth\\Tests\\": "tests/"
         }
     },
     "scripts": {

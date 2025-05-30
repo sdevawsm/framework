@@ -1,11 +1,11 @@
 {
-    "name": "lady-php/database",
-    "description": "Módulo de banco de dados do LadyPHP Framework",
+    "name": "lady/database",
+    "description": "Módulo de banco de dados do Lady Framework",
     "type": "library",
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "lady-php/support": "^1.0",
+        "lady/support": "^1.0",
         "doctrine/dbal": "^3.0"
     },
     "require-dev": {
@@ -14,12 +14,12 @@
     },
     "autoload": {
         "psr-4": {
-            "LadyPHP\\Database\\": "src/"
+            "Lady\\Database\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "LadyPHP\\Database\\Tests\\": "tests/"
+            "Lady\\Database\\Tests\\": "tests/"
         }
     },
     "scripts": {
