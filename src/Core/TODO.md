@@ -1,99 +1,116 @@
 # TODO - Módulo Core
 
+## Estrutura de Diretórios
+
+```
+framework/src/Core/
+├── Application/           # Classe principal e bootstrap do framework
+├── Config/               # Gerenciamento de configurações
+├── Container/            # Container de injeção de dependência
+├── Contracts/            # Interfaces e contratos
+├── Environment/          # Gerenciamento de variáveis de ambiente
+└── ServiceProvider/      # Provedores de serviço
+```
+
 ## Ordem de Implementação
 
-### 1. Container
-- [ ] Interface ContainerInterface
-  - [ ] Método get()
-  - [ ] Método has()
-  - [ ] Método set()
+### 1. Application
+- [ ] Classe Application
+  - [ ] Implementação do bootstrap
+  - [ ] Gerenciamento de serviços
+  - [ ] Registro de provedores
+  - [ ] Inicialização da aplicação
 
+### 2. Container
 - [ ] Classe Container
-  - [ ] Implementação de ContainerInterface
   - [ ] Sistema de binding
   - [ ] Resolução de dependências
-  - [ ] Singleton pattern
-  - [ ] Factory pattern
-
-### 2. Environment
-- [ ] Classe Environment
-  - [ ] Carregamento de .env
-  - [ ] Validação de variáveis
-  - [ ] Helpers de ambiente
-
-- [ ] Classe EnvironmentValidator
-  - [ ] Validação de ambiente
-  - [ ] Regras de validação
-  - [ ] Mensagens de erro
+  - [ ] Singleton management
+  - [ ] Alias resolution
 
 ### 3. Config
-- [ ] Interface ConfigInterface
-  - [ ] Método get()
-  - [ ] Método set()
-  - [ ] Método has()
-
 - [ ] Classe Config
-  - [ ] Implementação de ConfigInterface
   - [ ] Carregamento de arquivos
   - [ ] Cache de configurações
-  - [ ] Merge de configurações
+  - [ ] Gerenciamento de valores
+  - [ ] Validação de configurações
 
-### 4. Application
-- [ ] Interface ApplicationInterface
-  - [ ] Método bootstrap()
-  - [ ] Método register()
-  - [ ] Método environment()
+### 4. Environment
+- [ ] Classe Environment
+  - [ ] Carregamento de .env
+  - [ ] Validação de ambiente
+  - [ ] Helpers de ambiente
+  - [ ] Gerenciamento de variáveis
 
-- [ ] Classe Application
-  - [ ] Implementação de ApplicationInterface
-  - [ ] Gerenciamento de serviços
-  - [ ] Ciclo de vida da aplicação
-  - [ ] Registro de providers
+### 5. ServiceProvider
+- [ ] Classe ServiceProvider
+  - [ ] Registro de serviços
+  - [ ] Boot de serviços
+  - [ ] Gerenciamento de dependências
 
 ## Testes
+
+### Application
+- [ ] Testes de bootstrap
+- [ ] Testes de registro de serviços
+- [ ] Testes de inicialização
+- [ ] Testes de integração
 
 ### Container
 - [ ] Testes de binding
 - [ ] Testes de resolução
 - [ ] Testes de singleton
-- [ ] Testes de factory
-
-### Environment
-- [ ] Testes de carregamento
-- [ ] Testes de validação
-- [ ] Testes de helpers
+- [ ] Testes de alias
 
 ### Config
 - [ ] Testes de carregamento
 - [ ] Testes de cache
-- [ ] Testes de merge
+- [ ] Testes de valores
+- [ ] Testes de validação
 
-### Application
-- [ ] Testes de bootstrap
+### Environment
+- [ ] Testes de .env
+- [ ] Testes de ambiente
+- [ ] Testes de helpers
+- [ ] Testes de variáveis
+
+### ServiceProvider
 - [ ] Testes de registro
-- [ ] Testes de ciclo de vida
+- [ ] Testes de boot
+- [ ] Testes de dependências
+- [ ] Testes de integração
 
 ## Documentação
 
-### Container
-- [ ] Documentação de interfaces
-- [ ] Documentação de classes
+### Application
+- [ ] Documentação de bootstrap
+- [ ] Documentação de serviços
 - [ ] Exemplos de uso
+- [ ] Guia de inicialização
 
-### Environment
-- [ ] Documentação de variáveis
-- [ ] Documentação de validação
+### Container
+- [ ] Documentação de binding
+- [ ] Documentação de resolução
 - [ ] Exemplos de uso
+- [ ] Guia de injeção de dependência
 
 ### Config
 - [ ] Documentação de configurações
 - [ ] Documentação de cache
 - [ ] Exemplos de uso
+- [ ] Guia de configuração
 
-### Application
-- [ ] Documentação de bootstrap
-- [ ] Documentação de providers
+### Environment
+- [ ] Documentação de .env
+- [ ] Documentação de ambiente
 - [ ] Exemplos de uso
+- [ ] Guia de variáveis de ambiente
+
+### ServiceProvider
+- [ ] Documentação de serviços
+- [ ] Documentação de boot
+- [ ] Exemplos de uso
+- [ ] Guia de provedores
 
 ## Qualidade
 
@@ -109,7 +126,8 @@
 
 ## Progresso
 
+- [ ] Application
 - [ ] Container
-- [ ] Environment
 - [ ] Config
-- [ ] Application 
+- [ ] Environment
+- [ ] ServiceProvider 
