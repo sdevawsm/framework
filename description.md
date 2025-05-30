@@ -9,25 +9,82 @@ O LadyPHP Framework é um framework PHP moderno e modular, projetado para oferec
 ```
 framework/
 ├── src/                    # Código fonte do framework
-│   ├── Auth/              # Módulo de autenticação
-│   │   ├── Contracts/     # Interfaces
-│   │   ├── Guards/        # Implementações de autenticação
-│   │   └── Providers/     # Provedores de autenticação
-│   ├── Database/          # Módulo de banco de dados
-│   │   ├── Connection/    # Gerenciamento de conexões
-│   │   ├── Query/         # Construtor de queries
-│   │   └── Schema/        # Migrações e schema
-│   ├── Http/              # Módulo HTTP
-│   │   ├── Controllers/   # Controladores base
-│   │   ├── Middleware/    # Middlewares
-│   │   └── Routing/       # Sistema de rotas
-│   └── Support/           # Utilitários e helpers
-├── config/                # Configurações padrão
-├── bootstrap/            # Arquivos de inicialização
-└── tests/                # Testes do framework
+│   ├── Core/              # Núcleo do framework
+│   │   ├── Application/   # Classe principal da aplicação
+│   │   ├── Container/     # Container de DI
+│   │   ├── Config/        # Gerenciamento de configurações
+│   │   └── Environment/   # Gerenciamento de variáveis de ambiente
+│   │
+│   ├── Foundation/        # Fundação do framework
+│   │   ├── Contracts/     # Interfaces principais
+│   │   ├── Exceptions/    # Exceções personalizadas
+│   │   ├── ServiceProvider/ # Provedores de serviço
+│   │   └── Support/       # Helpers e utilitários
+│   │
+│   ├── Http/             # Camada HTTP
+│   │   ├── Controllers/  # Controladores base
+│   │   ├── Middleware/   # Middlewares
+│   │   ├── Requests/     # Form Requests
+│   │   ├── Responses/    # Respostas HTTP
+│   │   └── Routing/      # Sistema de rotas
+│   │
+│   ├── Auth/             # Autenticação
+│   │   ├── Guards/       # Guards de autenticação
+│   │   ├── JWT/          # Implementação JWT
+│   │   └── Providers/    # Provedores de autenticação
+│   │
+│   ├── Database/         # Camada de dados
+│   │   ├── Connection/   # Conexões com banco
+│   │   ├── Query/        # Query Builder
+│   │   ├── Schema/       # Migrações
+│   │   └── ORM/          # ORM básico
+│   │
+│   ├── Cache/            # Sistema de cache
+│   │   ├── Drivers/      # Drivers de cache
+│   │   └── Store/        # Implementações de store
+│   │
+│   ├── Events/           # Sistema de eventos
+│   │   ├── Dispatcher/   # Dispatcher de eventos
+│   │   └── Listeners/    # Listeners base
+│   │
+│   ├── Logging/          # Sistema de logs
+│   │   ├── Channels/     # Canais de log
+│   │   └── Handlers/     # Handlers de log
+│   │
+│   ├── Validation/       # Validação
+│   │   ├── Rules/        # Regras de validação
+│   │   └── Validator/    # Validador
+│   │
+│   └── Security/         # Segurança
+│       ├── Encryption/   # Criptografia
+│       ├── Hashing/      # Hash de senhas
+│       └── CSRF/         # Proteção CSRF
+│
+├── config/               # Configurações
+├── bootstrap/           # Arquivos de inicialização
+└── tests/               # Testes do framework
 ```
 
 ## Módulos Principais
+
+### Core
+- Classe principal da aplicação
+- Container de injeção de dependência
+- Gerenciamento de configurações
+- Ambiente e variáveis de ambiente
+
+### Foundation
+- Interfaces principais do framework
+- Sistema de exceções
+- Provedores de serviço
+- Helpers e utilitários
+
+### Http
+- Sistema de rotas robusto
+- Middleware pipeline
+- Controladores base
+- Form Requests
+- Respostas HTTP padronizadas
 
 ### Auth
 - Sistema de autenticação flexível
@@ -41,17 +98,32 @@ framework/
 - Múltiplos drivers de banco de dados
 - ORM simples e eficiente
 
-### Http
-- Sistema de rotas robusto
-- Middleware pipeline
-- Controladores base
-- Resposta HTTP padronizada
+### Cache
+- Sistema de cache flexível
+- Múltiplos drivers de cache
+- Cache tags e versionamento
 
-### Support
-- Helpers e utilitários
-- Sistema de eventos
-- Container de injeção de dependência
-- Sistema de cache
+### Events
+- Sistema de eventos assíncrono
+- Dispatcher de eventos
+- Listeners e subscribers
+
+### Logging
+- Sistema de logs configurável
+- Múltiplos canais de log
+- Rotação de logs
+- Formatação personalizada
+
+### Validation
+- Validação de dados
+- Regras customizáveis
+- Mensagens de erro personalizáveis
+
+### Security
+- Criptografia de dados
+- Hash de senhas seguro
+- Proteção CSRF
+- Headers de segurança
 
 ## Características
 
