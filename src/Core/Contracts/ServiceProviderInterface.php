@@ -9,11 +9,15 @@ interface ServiceProviderInterface
 {
     /**
      * Registra os serviços do provedor
+     *
+     * @return void
      */
     public function register(): void;
 
     /**
      * Inicializa os serviços do provedor
+     *
+     * @return void
      */
     public function boot(): void;
 
