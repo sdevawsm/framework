@@ -41,4 +41,14 @@ interface ContainerInterface
      * Limpa todas as ligações e instâncias
      */
     public function flush(): void;
+
+    /**
+     * Obtém uma instância do container
+     */
+    public function get(string $abstract): mixed;
+
+    /**
+     * Resolve uma dependência do container
+     */
+    public function make(string $abstract, array $parameters = []): mixed;
 } 
