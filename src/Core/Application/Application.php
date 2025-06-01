@@ -5,6 +5,7 @@ namespace Lady\Core\Application;
 use Lady\Core\Container\Container;
 use Lady\Core\Contracts\ApplicationInterface;
 use Lady\Core\Contracts\ServiceProviderInterface;
+use Lady\Core\Config\Config;
 
 /**
  * Classe principal do framework LadyPHP
@@ -24,7 +25,12 @@ class Application implements ApplicationInterface
     protected Container $container;
 
     /**
-     * Lista de provedores de serviço registrados
+     * Indica se a aplicação foi inicializada
+     */
+    protected bool $booted = false;
+
+    /**
+     * Lista de provedores de serviço a serem carregados
      */
     protected array $serviceProviders = [];
 
@@ -56,7 +62,72 @@ class Application implements ApplicationInterface
      */
     public function bootstrap(): void
     {
-        // TODO: Implementar inicialização da aplicação
+        // Inicializa o container se ainda não foi inicializado
+        if (!$this->container) {
+            $this->container = new Container();
+        }
+
+        // Carrega as configurações básicas
+        $this->loadBaseConfigurations();
+
+        // Registra os provedores de serviço básicos
+        $this->registerBaseServiceProviders();
+
+        // Marca a aplicação como inicializada
+        $this->booted = true;
+    }
+
+    /**
+     * Carrega as configurações básicas da aplicação
+     */
+    protected function loadBaseConfigurations(): void
+    {
+        $config = new Config();
+        
+        // Carrega as configurações do framework
+        $config->load(__DIR__ . '/../../config/app.php');
+        
+        // Registra a instância de configuração no container
+        $this->container->singleton('config', $config);
+    }
+
+    /**
+     * Registra os provedores de serviço básicos
+     */
+    protected function registerBaseServiceProviders(): void
+    {
+        // TODO: Implementar registro de provedores básicos
+        // 1. Registrar provedores do framework
+        // 2. Ordenar provedores
+        // 3. Gerenciar dependências
+    }
+
+    /**
+     * Inicializa os provedores de serviço
+     */
+    public function bootProviders(): void
+    {
+        foreach ($this->serviceProviders as $provider) {
+            $this->bootProvider($provider);
+        }
+    }
+
+    /**
+     * Inicializa um provedor de serviço
+     */
+    protected function bootProvider(ServiceProviderInterface $provider): void
+    {
+        if (method_exists($provider, 'boot')) {
+            $provider->boot();
+        }
+    }
+
+    /**
+     * Verifica se a aplicação foi inicializada
+     */
+    public function isBooted(): bool
+    {
+        return $this->booted;
     }
 
     /**
