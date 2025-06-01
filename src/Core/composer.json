@@ -1,5 +1,5 @@
 {
-    "name": "lady/framework-core",
+    "name": "lady/framework",
     "description": "Módulo Core do LadyPHP Framework",
     "type": "library",
     "license": "MIT",
