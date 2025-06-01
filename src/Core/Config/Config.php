@@ -20,35 +20,74 @@ class Config implements ConfigInterface
     protected array $cache = [];
 
     /**
-     * Carrega as configurações de um arquivo
+     * Cria uma nova instância de configuração
      */
-    public function load(string $file): void
+    public function __construct(array $config = [])
     {
-        // TODO: Implementar carregamento de arquivo de configuração
+        $this->config = $config;
     }
 
     /**
-     * Obtém uma configuração
+     * Carrega configurações de um arquivo
+     */
+    public function load(string $path): void
+    {
+        if (file_exists($path)) {
+            $config = require $path;
+            if (is_array($config)) {
+                $this->config = array_merge($this->config, $config);
+            }
+        }
+    }
+
+    /**
+     * Obtém um item de configuração
      */
     public function get(string $key, mixed $default = null): mixed
     {
-        // TODO: Implementar obtenção de configuração
+        if (is_null($key)) {
+            return $this->config;
+        }
+
+        if (isset($this->config[$key])) {
+            return $this->config[$key];
+        }
+
+        foreach (explode('.', $key) as $segment) {
+            if (!is_array($this->config) || !array_key_exists($segment, $this->config)) {
+                return $default;
+            }
+            $this->config = $this->config[$segment];
+        }
+
+        return $this->config;
     }
 
     /**
-     * Define uma configuração
+     * Define um item de configuração
      */
     public function set(string $key, mixed $value): void
     {
-        // TODO: Implementar definição de configuração
+        $keys = explode('.', $key);
+        $config = &$this->config;
+
+        while (count($keys) > 1) {
+            $key = array_shift($keys);
+            if (!isset($config[$key]) || !is_array($config[$key])) {
+                $config[$key] = [];
+            }
+            $config = &$config[$key];
+        }
+
+        $config[array_shift($keys)] = $value;
     }
 
     /**
-     * Verifica se uma configuração existe
+     * Verifica se um item de configuração existe
      */
     public function has(string $key): bool
     {
-        // TODO: Implementar verificação de configuração
+        return !is_null($this->get($key));
     }
 
     /**
@@ -56,7 +95,18 @@ class Config implements ConfigInterface
      */
     public function forget(string $key): void
     {
-        // TODO: Implementar remoção de configuração
+        $keys = explode('.', $key);
+        $config = &$this->config;
+
+        while (count($keys) > 1) {
+            $key = array_shift($keys);
+            if (!isset($config[$key])) {
+                return;
+            }
+            $config = &$config[$key];
+        }
+
+        unset($config[array_shift($keys)]);
     }
 
     /**
@@ -64,15 +114,16 @@ class Config implements ConfigInterface
      */
     public function clear(): void
     {
-        // TODO: Implementar limpeza de configurações
+        $this->config = [];
+        $this->cache = [];
     }
 
     /**
-     * Obtém todas as configurações
+     * Retorna todas as configurações
      */
     public function all(): array
     {
-        // TODO: Implementar obtenção de todas as configurações
+        return $this->config;
     }
 
     /**
@@ -80,7 +131,9 @@ class Config implements ConfigInterface
      */
     public function loadFromCache(): void
     {
-        // TODO: Implementar carregamento do cache
+        if (!empty($this->cache)) {
+            $this->config = array_merge($this->config, $this->cache);
+        }
     }
 
     /**
@@ -88,6 +141,6 @@ class Config implements ConfigInterface
      */
     public function saveToCache(): void
     {
-        // TODO: Implementar salvamento no cache
+        $this->cache = $this->config;
     }
 }
