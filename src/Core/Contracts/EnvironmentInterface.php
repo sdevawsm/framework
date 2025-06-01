@@ -38,7 +38,7 @@ interface EnvironmentInterface
     public function clear(): void;
 
     /**
-     * Obtém todas as variáveis de ambiente
+     * Retorna todas as variáveis de ambiente
      */
     public function all(): array;
 
