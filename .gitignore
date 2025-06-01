@@ -1,0 +1,69 @@
+# Arquivos e diretórios do sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Diretórios de dependências
+/vendor/
+/node_modules/
+
+# Arquivos de cache e logs
+/logs/
+*.log
+*.cache
+.phpunit.result.cache
+.phpunit.cache/
+
+# Arquivos de IDE e editores
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+
+# Arquivos de build e distribuição
+/build/
+/dist/
+*.phar
+
+# Arquivos de teste e cobertura
+/coverage/
+.phpunit.cache/
+.phpunit.result.cache
+
+# Arquivos temporários
+*.tmp
+*.temp
+*.bak
+*.backup
+
+# Arquivos de cache do Composer
+composer.lock
+composer.phar
+
+# Arquivos de cache do PHP
+*.php~
+*.php.bak
+*.php.swp
+
+# Arquivos de cache do sistema
+*.cache
+.cache/
+
+# Arquivos de configuração local
+config/*.local.php
+config/*.local.json
+config/*.local.yaml
+
+# Arquivos de ambiente (se necessário para testes)
+.env
+.env.*
+!.env.example
+
+# Arquivos de documentação gerados
+/docs/_build/
+/docs/api/
+
+# Arquivos de benchmark
+/benchmark/results/ 
