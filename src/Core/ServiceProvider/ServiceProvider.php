@@ -2,6 +2,7 @@
 
 namespace Lady\Core\ServiceProvider;
 
+use Lady\Core\Application\Application;
 use Lady\Core\Contracts\ApplicationInterface;
 use Lady\Core\Contracts\ServiceProviderInterface;
 
@@ -11,9 +12,9 @@ use Lady\Core\Contracts\ServiceProviderInterface;
 abstract class ServiceProvider implements ServiceProviderInterface
 {
     /**
-     * Instância da aplicação
+     * A instância da aplicação
      */
-    protected ApplicationInterface $app;
+    protected Application $app;
 
     /**
      * Indica se o provedor está registrado
@@ -26,7 +27,7 @@ abstract class ServiceProvider implements ServiceProviderInterface
     protected bool $booted = false;
 
     /**
-     * Construtor do provedor de serviço
+     * Cria uma nova instância do provedor de serviço
      */
     public function __construct(ApplicationInterface $app)
     {
@@ -36,14 +37,17 @@ abstract class ServiceProvider implements ServiceProviderInterface
     /**
      * Registra os serviços do provedor
      */
-    abstract public function register(): void;
+    public function register(): void
+    {
+        // Implementação padrão vazia
+    }
 
     /**
      * Inicializa os serviços do provedor
      */
     public function boot(): void
     {
-        // TODO: Implementar inicialização dos serviços
+        // Implementação padrão vazia
     }
 
     /**
