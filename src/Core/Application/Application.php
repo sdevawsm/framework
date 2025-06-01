@@ -47,7 +47,8 @@ class Application implements ApplicationInterface
      */
     protected function registerBaseBindings(): void
     {
-        // TODO: Implementar registro das ligações base
+        $this->container->singleton('app', $this);
+        $this->container->singleton(ApplicationInterface::class, $this);
     }
 
     /**
@@ -63,7 +64,13 @@ class Application implements ApplicationInterface
      */
     public function register(ServiceProviderInterface $provider): void
     {
-        // TODO: Implementar registro de provedor de serviço
+        if ($this->isProviderRegistered(get_class($provider))) {
+            return;
+        }
+
+        $provider->register();
+        $this->serviceProviders[] = $provider;
+        $this->loadedProviders[get_class($provider)] = true;
     }
 
     /**
@@ -71,7 +78,9 @@ class Application implements ApplicationInterface
      */
     public function loadProvider(ServiceProviderInterface $provider): void
     {
-        // TODO: Implementar carregamento de provedor de serviço
+        if (!$this->isProviderRegistered(get_class($provider))) {
+            $this->register($provider);
+        }
     }
 
     /**
@@ -79,7 +88,7 @@ class Application implements ApplicationInterface
      */
     public function isProviderRegistered(string $provider): bool
     {
-        // TODO: Implementar verificação de provedor registrado
+        return isset($this->loadedProviders[$provider]);
     }
 
     /**
@@ -87,7 +96,7 @@ class Application implements ApplicationInterface
      */
     public function getContainer(): Container
     {
-        // TODO: Implementar obtenção do container
+        return $this->container;
     }
 
     /**
@@ -95,7 +104,7 @@ class Application implements ApplicationInterface
      */
     public function resolve(string $abstract, array $parameters = []): mixed
     {
-        // TODO: Implementar resolução de dependência
+        return $this->container->make($abstract, $parameters);
     }
 
     /**
@@ -103,7 +112,7 @@ class Application implements ApplicationInterface
      */
     public function bind(string $abstract, $concrete = null, bool $shared = false): void
     {
-        // TODO: Implementar registro de ligação
+        $this->container->bind($abstract, $concrete, $shared);
     }
 
     /**
@@ -111,7 +120,7 @@ class Application implements ApplicationInterface
      */
     public function singleton(string $abstract, $concrete = null): void
     {
-        // TODO: Implementar registro de ligação compartilhada
+        $this->container->singleton($abstract, $concrete);
     }
 
     /**
@@ -119,7 +128,7 @@ class Application implements ApplicationInterface
      */
     public function version(): string
     {
-        // TODO: Implementar obtenção da versão
+        return self::VERSION;
     }
 
     /**
@@ -127,7 +136,7 @@ class Application implements ApplicationInterface
      */
     public function isDevelopment(): bool
     {
-        // TODO: Implementar verificação de modo de desenvolvimento
+        return $this->container->get('env') === 'development';
     }
 
     /**
@@ -135,6 +144,6 @@ class Application implements ApplicationInterface
      */
     public function isProduction(): bool
     {
-        // TODO: Implementar verificação de modo de produção
+        return $this->container->get('env') === 'production';
     }
 }
